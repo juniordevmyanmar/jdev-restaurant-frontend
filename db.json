@@ -1,0 +1,16 @@
+{
+    "restaurants": [
+        {
+            "id": 1,
+            "name": "Restaurant 1",
+            "address": "123st, Yangon"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "name": "Person 1",
+            "email": "person1@mail.com"
+        }
+    ]
+}
