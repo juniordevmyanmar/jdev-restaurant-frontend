@@ -3,6 +3,7 @@ import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { Link } from "react-router-dom";
 import AlertBox from "./AlertBox";
 
 const schema = yup.object({
@@ -80,7 +81,7 @@ const LoginForm = () => {
 
 
             </form>
-            <p className="text-center w-full text-white text-sm mt-5">Don't have account? <span className="font-bold underline underline-offset-4 decoration-secondary">Signup Here</span></p>
+            <p className="text-center w-full text-white text-sm mt-5">Don't have account? <Link className="font-bold underline underline-offset-4 decoration-secondary" to={"/register"}>Signup Here</Link></p>
         </div>
     )
 }
