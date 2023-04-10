@@ -20,8 +20,9 @@ const schema = yup.object({
                     .oneOf([yup.ref('password')], 'Passwords must match'),
     phoneNum: yup.string()
                     .max(10, "Phone number must not exceed 10 digits")
-                    .matches(/^[0-9]+$/,"Phone number must be a number")
-                    .optional(),
+                    .matches(/^[0-9]*$/,"Phone number must be a number")
+                    .transform((value) => value.length === 0 ? undefined : value)
+                    .nullable(),
     dateOfBirth: yup.date()
                     .optional()
                     .transform((value,originalValue) => originalValue === "" ? undefined : value),
