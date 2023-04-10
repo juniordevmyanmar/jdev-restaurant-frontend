@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect, useLayoutEffect} from "react";
 
 export default function Navbar() {
 
@@ -6,7 +6,7 @@ export default function Navbar() {
     const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
     const handleClick = () => setIsMobileNavOpen(!isMobileNavOpen);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const handleResize = () => {
           setIsMobile(window.innerWidth < 768);
         };
