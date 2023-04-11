@@ -6,12 +6,12 @@ export default function LoginPage() {
         < div className='flex flex-col justify-center h-[900px]'>
 
             <div
-                className="bg-cover h-80 w-full bg-login flex justify-center items-center "
+                className="bg-cover h-80 w-full bg-login flex justify-center items-center"
             >
-                <p className=' text-white  font-bold text-3xl tracking-widest' style={{ textShadow: "2px 2px 4px #000000" }}>Discover Your Cravings</p>
+                <p className=' text-white font-bold text-3xl tracking-widest' style={{ textShadow: "2px 2px 4px #000000" }}>Discover Your Cravings</p>
             </div>
 
-            <div className='bg-[#00172C]	h-full flex justify-center '>
+            <div className='bg-[#00172C] h-full flex justify-center '>
                 <div className='w-[436px] h-[36px] '>
                     <div className="pt-[110px] pb-[36px]">
                         <input
@@ -30,7 +30,7 @@ export default function LoginPage() {
                                 name="password"
                                 id="password"
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900  shadow-sm ring-1 ring-inset ring-[#E1688C] placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#E1688C] sm:text-sm sm:leading-6 pl-[10px]	"
-                                placeholder="Enter Password "
+                                placeholder="Enter Password"
                             />
                         </div>
                     </div>
@@ -40,7 +40,7 @@ export default function LoginPage() {
                     >
                         Login
                     </button>
-                    <p className=' text-white text-center block text-sm font-medium pt-[21px] leading-6 '>Don't Have Account? Signup Here</p>
+                    <p className='text-white text-center block text-sm font-medium pt-[21px] leading-6'>Don't Have Account? Signup Here</p>
                 </div>
             </div >
         </div >

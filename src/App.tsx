@@ -1,10 +1,11 @@
 import React from 'react';
 import LoginPage from './pages/LoginPage';
+import { ResturantDetail } from './pages';
 
 function App() {
   return (
     <div>
-      <LoginPage />
+      <ResturantDetail />
     </div>
   );
 }
