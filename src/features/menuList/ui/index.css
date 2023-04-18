@@ -1,0 +1,8 @@
+.menulist-container {
+    background-color: var(--bg-color);
+}
+
+
+.btn-order {
+    background-color: var(--primary-color);
+}
