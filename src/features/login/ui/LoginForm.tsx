@@ -52,27 +52,8 @@ const LoginForm = () => {
     }
   }, [token, naviagte]);
 
-  const getUser = (email: string, password: string) => {
-    axios
-      .get<User[]>(
-        `http://localhost:3001/Users?email=${email}&password=${password}`
-      )
-      .then((response) => {
-        console.log(response.data);
-        if (response.data.length === 0) {
-          alert("no user found");
-          setIsCorrect("false");
-        } else {
-          alert(response.data);
-          setIsCorrect("true");
-        }
-      });
-  };
-
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const { email, password } = data;
     dispatch(userLogin(data));
-    // getUser(email, password);
   };
 
   const handleCloseBtn = () => {
