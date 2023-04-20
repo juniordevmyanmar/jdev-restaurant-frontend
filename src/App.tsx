@@ -1,7 +1,7 @@
 import React from "react";
 import LoginPage from "./pages/LoginPage";
 import MenuList from "./features/menuList/ui/MenuList";
-import menu_item_1 from "../../../assets/media/menu-item-1.jpg";
+import menu_item_1 from "./assets/media/menu-item-1.jpg";
 
 function App() {
   const menuList = [
