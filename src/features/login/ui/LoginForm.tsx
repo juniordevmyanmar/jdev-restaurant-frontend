@@ -47,7 +47,6 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (token) {
-      console.log("user token in login:", token);
       naviagte("/");
     }
   }, [token, naviagte]);

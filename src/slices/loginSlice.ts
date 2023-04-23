@@ -22,13 +22,14 @@ const initialState: InitialState = {
   success: "",
 };
 
-const LOGIN_URL = "http://localhost:5000/login";
-
 export const userLogin = createAsyncThunk(
   "login",
   async (loignUser: loginUser, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(`${LOGIN_URL}`, loignUser);
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_LOGIN_URL}`,
+        loignUser
+      );
       localStorage.setItem("userToken", JSON.stringify(data.data.token));
 
       return data;
