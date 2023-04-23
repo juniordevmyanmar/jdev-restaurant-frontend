@@ -7,7 +7,6 @@ import HomePage from "./pages/HomePage";
 function App() {
   return (
     <div>
-      {/* <LoginPage /> */}
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -15,7 +14,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
-    </div>
+      </div>
   );
 }
 
