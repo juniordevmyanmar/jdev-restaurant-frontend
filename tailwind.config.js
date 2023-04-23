@@ -4,8 +4,13 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        login: "url('/public/unsplash.jpg')",
+        login: "url('/src/assets/media/unsplash.jpg')",
       },
+      colors:{
+        primary:'#00172C',
+        secondary : '#E1688C',
+        menu: '#C8C8C8'
+      }
     },
   },
   plugins: [],
