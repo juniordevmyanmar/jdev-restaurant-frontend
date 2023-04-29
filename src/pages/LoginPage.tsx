@@ -3,6 +3,7 @@ import Navbar from "../features/common/ui/Navbar";
 import LoginForm from "../features/login/ui/LoginForm";
 
 export default function LoginPage() {
+
   return (
     <>
       {/* <Navbar /> */}
