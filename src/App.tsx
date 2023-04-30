@@ -1,8 +1,7 @@
 import React from "react";
-import LoginPage from "./pages/LoginPage";
+import { LoginScreen, HomScreen, ResturantsScreen, DealsScreen, FoodCategoryScreen } from "./pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./features/common/ui/Navbar";
-import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -10,12 +9,14 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          
+          <Route path="/" element={<HomScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/resturants" element={<ResturantsScreen />} />
+          <Route path="/deals" element={<DealsScreen />} />
+          <Route path="/food-category" element={<FoodCategoryScreen />} />
         </Routes>
       </BrowserRouter>
-      </div>
+    </div>
   );
 }
 
