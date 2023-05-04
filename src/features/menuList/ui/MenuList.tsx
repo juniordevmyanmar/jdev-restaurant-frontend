@@ -11,7 +11,7 @@ const MenuList = ({ menus }: MenuListProps) => {
   return (
     <div className="bg-primary text-white pt-10 pl-10">
       <h2 className="mb-6 text-xl">Available Menu</h2>
-      <div className="overflow-x-scroll flex gap-x-4 sm:gap-x-10 pb-4">
+      <div className="overflow-x-auto flex gap-x-4 sm:gap-x-10 pb-4">
         {Array.isArray(menus) &&
           menus.length > 0 &&
           menus.map((menu) => {

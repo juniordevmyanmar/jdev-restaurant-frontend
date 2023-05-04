@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import { NavLink } from "react-router-dom";
-
+type NavbarProp = {
+  isScroll: boolean;
+};
 export default function Navbar() {
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
+  const [isScroll, setIsScroll] = useState(false);
+
   const handleClick = () => setIsMobileNavOpen(!isMobileNavOpen);
 
   useLayoutEffect(() => {
@@ -24,8 +28,22 @@ export default function Navbar() {
     }
   }, [isMobile]);
 
+  // Navbar scroll
+  const scrollPositon = () => {
+    if (window.pageYOffset >= 64) {
+      setIsScroll(true);
+    } else {
+      setIsScroll(false);
+    }
+  };
+  window.addEventListener("scroll", scrollPositon);
+
   return (
-    <div className="bg-primary text-menu w-full h-[64px] sticky top-0 drop-shadow-md">
+    <div
+      className={`${
+        isScroll ? "bg-primary" : "bg-transparent"
+      } text-menu w-full h-[64px] fixed z-50 top-0 drop-shadow-md`}
+    >
       <div className="px-4 flex justify-between items-center w-full h-full">
         <div className="flex items-center text-sm">
           <h1 className="text-xl font-bold mr-4 md:text-2xl">Logo</h1>
