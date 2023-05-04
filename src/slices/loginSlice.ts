@@ -27,7 +27,7 @@ export const userLogin = createAsyncThunk(
   async (loignUser: loginUser, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_LOGIN_URL}`,
+        `${process.env.REACT_APP_URL}/login`,
         loignUser
       );
       localStorage.setItem("userToken", JSON.stringify(data.data.token));
