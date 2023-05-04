@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
+import { userLogin } from "../../../slices/loginSlice";
+import { userRegister } from "../../../slices/registerSlice";
 
 const schema = yup.object({
     username: yup.string()
@@ -18,11 +21,10 @@ const schema = yup.object({
     confirmPassword: yup.string()
                     .required("Please enter confirm password")
                     .oneOf([yup.ref('password')], 'Passwords must match'),
-    phoneNum: yup.string()
+    phone: yup.string()
                     .max(10, "Phone number must not exceed 10 digits")
                     .matches(/^[0-9]*$/,"Phone number must be a number")
-                    .transform((value) => value.length === 0 ? undefined : value)
-                    .nullable(),
+                    .transform((value) => value.length === 0 ? undefined : value),
     dateOfBirth: yup.date()
                     .optional()
                     .transform((value,originalValue) => originalValue === "" ? undefined : value),
@@ -40,12 +42,25 @@ const RegisterForm = () => {
         resolver: yupResolver(schema)
     });
 
-
     const [ currentStep, setCurrentStep ] = useState<number>(1);
 
-    const onSubmit: SubmitHandler<Inputs>  = (data) => {
+    const { loading, token, error } = useAppSelector((state) => state.register);
+    const dispatch = useAppDispatch();
+  
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        if (token) {
+          navigate("/login");
+        }
+      }, [token, navigate]);
+    
+
+    const onSubmit: SubmitHandler<Inputs>  = (data) => {
+        const {username, email, password, phone, dateOfBirth, address} = data;
+        const name = username;
         console.log(data);
+        dispatch(userRegister({name, email, password, phone, dateOfBirth, address}));
     }
 
     const handleNextButton = async () => {
@@ -106,10 +121,10 @@ const RegisterForm = () => {
                 { currentStep === 2 && (
                     <>
 
-                        <input type="string" id="phoneNum" className={`w-full sm:w-[476px] block rounded-md p-2.5 gray-900 text-gray-900  shadow-sm ring-1 ring-inset ring-[#E1688C] focus:ring-2 focus:ring-inset focus:ring-[#E1688C]  sm:text-sm sm:leading-6 pl-[10px] ${errors.phoneNum ? "border border-red-500 placeholder:text-red-400": "border-0 placeholder:text-gray-400"}`} placeholder="Enter phone Number" {...register("phoneNum")}/>
-                        {errors.phoneNum && (
+                        <input type="string" id="phone" className={`w-full sm:w-[476px] block rounded-md p-2.5 gray-900 text-gray-900  shadow-sm ring-1 ring-inset ring-[#E1688C] focus:ring-2 focus:ring-inset focus:ring-[#E1688C]  sm:text-sm sm:leading-6 pl-[10px] ${errors.phone ? "border border-red-500 placeholder:text-red-400": "border-0 placeholder:text-gray-400"}`} placeholder="Enter phone Number" {...register("phone")}/>
+                        {errors.phone && (
                             <div className="w-full sm:w-[476px] text-left">
-                                <span className="text-red-600">{errors.phoneNum?.message}</span>
+                                <span className="text-red-600">{errors.phone?.message}</span>
                             </div>
                         )}
 
