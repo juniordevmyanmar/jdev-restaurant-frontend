@@ -1,5 +1,5 @@
 import React from "react";
-import ResturantCatList from "../features/home/ResturantCatList";
+import ResturantCatList from "../features/home/ui/ResturantCatListSection";
 
 const HomePage = () => {
   return (
