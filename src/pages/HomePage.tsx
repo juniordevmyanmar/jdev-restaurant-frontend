@@ -1,8 +1,10 @@
+import React from "react";
+import ResturantCatList from "../features/home/ui/ResturantCatListSection";
 import MenuList from "../features/menuList/ui/MenuList";
 import menuItem1 from "../assets/media/menu-item-1.jpg";
 import restaurant1 from "../assets/media/restaurant1.jpg";
 import Navbar from "../features/common/ui/Navbar";
-import RestaurantList from "../features/restaurant/ui/RestaurantList";
+import RestaurantList from "../features/home/ui/RestaurantList";
 
 const HomePage = () => {
   const menus = [
@@ -67,6 +69,7 @@ const HomePage = () => {
           </div>
         </div>
       </header>
+      <ResturantCatList />
       <section className="section-menulist pl-10 pt-10">
         <h2 className="mb-6 text-xl text-white">Today Deals</h2>
         <RestaurantList restaurants={restaurants} />
