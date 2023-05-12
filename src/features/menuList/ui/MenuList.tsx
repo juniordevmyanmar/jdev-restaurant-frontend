@@ -8,6 +8,7 @@ type MenuListProps = {
 };
 
 const MenuList = ({ menus }: MenuListProps) => {
+  
   return (
     <div className="bg-primary text-white pt-10 pl-10">
       <h2 className="mb-6 text-xl">Available Menu</h2>
@@ -21,7 +22,7 @@ const MenuList = ({ menus }: MenuListProps) => {
                   <img
                     src={menu.menu_image}
                     alt={menu.menu_name}
-                    className="w-full h-full object-cover rounded-lg menu-box--img"
+                    className="w-full h-full object-covessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssr rounded-lg menu-box--img"
                   />
                 </div>
                 <h3 className="text-sm">{menu.menu_name}</h3>
