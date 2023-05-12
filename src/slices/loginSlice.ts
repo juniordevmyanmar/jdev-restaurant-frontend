@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { login } from "../services/auth.service";
 
 export type loginUser = {
   email: string;
@@ -26,10 +27,7 @@ export const userLogin = createAsyncThunk(
   "login",
   async (loignUser: loginUser, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_LOGIN_URL}`,
-        loignUser
-      );
+      const { data } = await login(loignUser);
       localStorage.setItem("userToken", JSON.stringify(data.data.token));
 
       return data;

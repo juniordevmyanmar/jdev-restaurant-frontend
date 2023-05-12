@@ -1,9 +1,19 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import { NavLink } from "react-router-dom";
+import {
+  FaHome,
+  FaWineGlass,
+  FaShoppingBag,
+  FaThList,
+  FaLock,
+  FaBars,
+} from "react-icons/fa";
 
 export default function Navbar() {
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
+  const [isScroll, setIsScroll] = useState(false);
+
   const handleClick = () => setIsMobileNavOpen(!isMobileNavOpen);
 
   useLayoutEffect(() => {
@@ -24,27 +34,58 @@ export default function Navbar() {
     }
   }, [isMobile]);
 
+  // Navbar scroll
+  const scrollPositon = () => {
+    if (window.pageYOffset >= 64) {
+      setIsScroll(true);
+    } else {
+      setIsScroll(false);
+    }
+  };
+  window.addEventListener("scroll", scrollPositon);
+
   return (
-    <div className="bg-primary text-menu w-full h-[64px] sticky top-0 drop-shadow-md">
+    <div
+      className={`${
+        isScroll ? "bg-primary" : "bg-transparent"
+      } text-menu w-full h-[64px] fixed z-50 top-0 drop-shadow-md`}
+    >
       <div className="px-4 flex justify-between items-center w-full h-full">
         <div className="flex items-center text-sm">
           <h1 className="text-xl font-bold mr-4 md:text-2xl">Logo</h1>
-          <ul className="hidden md:flex">
-            <NavLink to="/" className="p-4">
+          <ul className="hidden md:flex text-lg">
+            <NavLink
+              to="/"
+              className="p-4 flex items-center gap-x-1.5 hover:text-secondary"
+            >
+              <FaHome />
               Home
             </NavLink>
-            <li className="p-4">Restaurants</li>
-            <li className="p-4">Deals</li>
-            <li className="p-4">Food Category</li>
+            <li className="p-4 flex items-center gap-x-1.5 hover:text-secondary">
+              <FaWineGlass />
+              Restaurants
+            </li>
+            <li className="p-4 flex items-center gap-x-1.5 hover:text-secondary">
+              <FaShoppingBag />
+              Deals
+            </li>
+            <li className="p-4 flex items-center gap-x-1.5 hover:text-secondary">
+              <FaThList />
+              Food Category
+            </li>
           </ul>
         </div>
         <ul className="hidden md:flex">
-          <NavLink to="/login" className="p-4 text-secondary">
+          <NavLink
+            to="/login"
+            className="p-4 flex items-center gap-x-1.5 hover:text-secondary"
+          >
+            <FaLock />
             Login
           </NavLink>
         </ul>
-        <div className="md:hidden" onClick={handleClick}>
-          Ham
+        <div className="md:hidden cursor-pointer" onClick={handleClick}>
+          <FaBars />
         </div>
       </div>
 

@@ -6,7 +6,7 @@ export default function LoginPage() {
 
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="flex flex-col justify-center">
         <div className="bg-center sm:bg-cover h-[450px] w-full bg-login ">
           <div className="bg-slate-700/30 w-full h-full flex justify-center items-center">
@@ -24,5 +24,4 @@ export default function LoginPage() {
       <LoginForm />
     </>
   );
-
 }
