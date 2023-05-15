@@ -9,12 +9,20 @@ import {
   FaBars,
 } from "react-icons/fa";
 
-export default function Navbar() {
+type NavBarPropsType = {
+  transparent?: boolean
+}
+
+export default function Navbar({ transparent = true }: NavBarPropsType) {
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
   const [isScroll, setIsScroll] = useState(false);
 
   const handleClick = () => setIsMobileNavOpen(!isMobileNavOpen);
+  const inactiveLink = "p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex items-center gap-x-1.5 hover:text-primary"
+  const activeLink = "p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 text-secondary flex items-center gap-x-1.5 hover:text-primary"
+  const acitvemobileLink = "my-2 p-2 text-primary font-bold bg-primary rounded  flex-1 flex"
+  const inacitvemobileLink = "p-2 text-primary border-b border-menu/40  flex-1 flex"
 
   useLayoutEffect(() => {
     const handleResize = () => {
@@ -36,7 +44,7 @@ export default function Navbar() {
 
   // Navbar scroll
   const scrollPositon = () => {
-    if (window.pageYOffset >= 64) {
+    if (window.pageYOffset >= 50) {
       setIsScroll(true);
     } else {
       setIsScroll(false);
@@ -46,45 +54,47 @@ export default function Navbar() {
 
   return (
     <div
-      className={`${
-        isScroll ? "bg-primary" : "bg-transparent"
-      } text-menu w-full h-[64px] fixed z-50 top-0 drop-shadow-md`}
+      className={`${isScroll || !transparent ? "bg-primary" : "bg-transparent"
+        } text-menu w-full h-[64px] fixed z-50 top-0 drop-shadow-md`}
     >
       <div className="px-4 flex justify-between items-center w-full h-full">
-        <div className="flex items-center text-sm">
-          <h1 className="text-xl font-bold mr-4 md:text-2xl">Logo</h1>
-          <ul className="hidden md:flex text-lg">
-            <NavLink
-              to="/"
-              className="p-4 flex items-center gap-x-1.5 hover:text-secondary"
-            >
+        <div className="flex items-center text-md">
+          <ul className="hidden md:flex">
+            <NavLink to="/"
+              className={({ isActive }) => (isActive ? `${activeLink}` : inactiveLink)}>
               <FaHome />
-              Home
+              <li> Home</li>
             </NavLink>
-            <li className="p-4 flex items-center gap-x-1.5 hover:text-secondary">
+            <NavLink to="/restaurants"
+              className={({ isActive }) => (isActive ? `${activeLink}` :
+                inactiveLink)}
+            >
               <FaWineGlass />
-              Restaurants
-            </li>
-            <li className="p-4 flex items-center gap-x-1.5 hover:text-secondary">
+              <li>Restaurants</li>
+            </NavLink>
+            <NavLink to="/deals"
+              className={({ isActive }) => (isActive ? `${activeLink}` :
+                inactiveLink)}
+            >
               <FaShoppingBag />
-              Deals
-            </li>
-            <li className="p-4 flex items-center gap-x-1.5 hover:text-secondary">
+              <li>Deals</li>
+            </NavLink>
+            <NavLink to="/food-category"
+              className={({ isActive }) => (isActive ? `${activeLink}` :
+                inactiveLink)}
+            >
               <FaThList />
-              Food Category
-            </li>
+              <li>Food Category</li>
+            </NavLink>
           </ul>
         </div>
-        <ul className="hidden md:flex">
-          <NavLink
-            to="/login"
-            className="p-4 flex items-center gap-x-1.5 hover:text-secondary"
-          >
+        <div className="hidden md:flex">
+          <NavLink to="/login" className="p-4 text-secondary transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex items-center gap-x-1.5 hover:text-primary">
             <FaLock />
             Login
           </NavLink>
-        </ul>
-        <div className="md:hidden cursor-pointer" onClick={handleClick}>
+        </div>
+        <div className="md:hidden" onClick={handleClick}>
           <FaBars />
         </div>
       </div>
@@ -97,20 +107,50 @@ export default function Navbar() {
             : "hidden"
         }
       >
-        <li className="p-4 text-primary border-b border-menu/40 w-full">
-          Home
+        <li >
+          <NavLink to="/"
+            onClick={() => setIsMobileNavOpen(false)}
+            className={({ isActive }) => (isActive ? `${acitvemobileLink}` :
+              inacitvemobileLink)}
+          >
+            Home
+          </NavLink>
         </li>
-        <li className="p-4 text-primary border-b border-menu/40 w-full">
-          Restaurants
+        <li >
+          <NavLink to="/resturants"
+            onClick={() => setIsMobileNavOpen(false)}
+            className={({ isActive }) => (isActive ? `${acitvemobileLink}` :
+              inacitvemobileLink)}
+          >
+            Resturants
+          </NavLink>
         </li>
-        <li className="p-4 text-primary border-b border-menu/40 w-full">
-          Deals
+        <li >
+          <NavLink to="/deals"
+            onClick={() => setIsMobileNavOpen(false)}
+            className={({ isActive }) => (isActive ? `${acitvemobileLink}` :
+              inacitvemobileLink)}
+          >
+            Deals
+          </NavLink>
         </li>
-        <li className="p-4 text-primary border-b border-menu/40 w-full">
-          Food Category
+        <li >
+          <NavLink to="/food-categories"
+            onClick={() => setIsMobileNavOpen(false)}
+            className={({ isActive }) => (isActive ? `${acitvemobileLink}` :
+              inacitvemobileLink)}
+          >
+            Food Categories
+          </NavLink>
         </li>
-        <li className="my-4 p-4 text-secondary font-bold bg-primary rounded w-full">
-          Login
+        <li >
+          <NavLink to="/login"
+            onClick={() => setIsMobileNavOpen(false)}
+            className={({ isActive }) => (isActive ? `${acitvemobileLink}` :
+              inacitvemobileLink)}
+          >
+            Login
+          </NavLink>
         </li>
       </ul>
     </div>
