@@ -9,7 +9,11 @@ import {
   FaBars,
 } from "react-icons/fa";
 
-export default function Navbar() {
+type NavBarPropsType = {
+  transparent?: boolean
+}
+
+export default function Navbar({ transparent = true }: NavBarPropsType) {
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
   const [isScroll, setIsScroll] = useState(false);
@@ -40,7 +44,7 @@ export default function Navbar() {
 
   // Navbar scroll
   const scrollPositon = () => {
-    if (window.pageYOffset >= 64) {
+    if (window.pageYOffset >= 50) {
       setIsScroll(true);
     } else {
       setIsScroll(false);
@@ -50,7 +54,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`${isScroll ? "bg-primary" : "bg-transparent"
+      className={`${isScroll || !transparent ? "bg-primary" : "bg-transparent"
         } text-menu w-full h-[64px] fixed z-50 top-0 drop-shadow-md`}
     >
       <div className="px-4 flex justify-between items-center w-full h-full">
@@ -61,7 +65,7 @@ export default function Navbar() {
               <FaHome />
               <li> Home</li>
             </NavLink>
-            <NavLink to="/resturants"
+            <NavLink to="/restaurants"
               className={({ isActive }) => (isActive ? `${activeLink}` :
                 inactiveLink)}
             >

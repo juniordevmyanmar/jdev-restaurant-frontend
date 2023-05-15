@@ -1,8 +1,12 @@
 import React from 'react'
+import Navbar from '../features/common/ui/Navbar'
 
 const FoodCategoryPage = () => {
   return (
-    <div>FoodCategory</div>
+    <div>
+      <Navbar transparent={false} />
+      <div className='mt-[90px]'>FoodCategory</div>
+    </div>
   )
 }
 

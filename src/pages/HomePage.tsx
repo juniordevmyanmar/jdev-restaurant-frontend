@@ -1,6 +1,6 @@
 import React from "react";
 import ResturantCatList from "../features/home/ui/ResturantCatListSection";
-import MenuList from "../features/menuList/ui/MenuList";
+import MenuList from "../features/resturants/ui/MenuList";
 import menuItem1 from "../assets/media/menu-item-1.jpg";
 import restaurant1 from "../assets/media/restaurant1.jpg";
 import Navbar from "../features/common/ui/Navbar";
